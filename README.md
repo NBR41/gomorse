@@ -21,6 +21,7 @@ go install # or go build
 ```
 
 ## Usage
+```bash
 ./gomorse -h
 gomorse is a tool to transcript phrases to morse code.
 3 parameters:
