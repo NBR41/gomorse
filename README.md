@@ -1,7 +1,7 @@
 # gomorse [![GoDoc](https://godoc.org/github.com/NBR41/gomorse?status.svg)](https://godoc.org/github.com/NBR41/gomorse) [![Build Status](https://travis-ci.org/NBR41/gomorse.svg?branch=master)](https://travis-ci.org/NBR41/gomorse) [![Coverage Status](http://codecov.io/gh/NBR41/gomorse/branch/master/graph/badge.svg)](http://codecov.io/gh/NBR41/gomorse)
 Simple command to code phrases into beep morse code.
 
-## Purpose
+## Purpose
 Insprired by [github.com/dbatbold/beep](https://github.com/dbatbold/beep), this library get a phrase as input, check it validity, and play on speakers beep morse code corresponding to the input phrase.
 
 ## Install
