@@ -46,7 +46,7 @@ func OpenSoundDevice(device string) error {
 	return nil
 }
 
-func InitSoundDevice() error {
+func (m *Player) InitSoundDevice() error {
 	wavehdrLast = nil
 	return nil
 }
@@ -63,7 +63,7 @@ func CloseSoundDevice() {
 	}
 }
 
-func FlushSoundBuffer() {
+func (m *Player) FlushSoundBuffer() {
 	if wavehdrLast != nil {
 		var wavehdr C.WAVEHDR
 		for wavehdrLast.dwFlags&C.WHDR_DONE == 0 {

@@ -1,4 +1,4 @@
-# gomorse
+# gomorse [![GoDoc](https://godoc.org/github.com/NBR41/gomorse?status.svg)](https://godoc.org/github.com/NBR41/gomorse) [![Build Status](https://travis-ci.org/NBR41/gomorse.svg?branch=master)](https://travis-ci.org/NBR41/gomorse) [![Coverage Status](http://codecov.io/gh/NBR41/gomorse/branch/master/graph/badge.svg)](http://codecov.io/gh/NBR41/gomorse)
 Simple command to code phrases into beep morse code.
 
 ## Purpose
@@ -17,7 +17,7 @@ After you get the package, and install dependancies
 go get github.com/NBR41/gomorse
 cd $GOPATH/src/github.com/NBR41/gomorse/cmd/gomorse
 dep ensure
-go install # or go build 
+go install # or go build
 ```
 
 ## Usage

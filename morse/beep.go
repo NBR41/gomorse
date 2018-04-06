@@ -6,8 +6,23 @@ import (
 	"github.com/NBR41/gomorse/beep"
 )
 
+type player interface {
+	InitSoundDevice() error
+	FlushSoundBuffer()
+	WaitLine()
+	Play(buf1, buf2 []int16)
+}
+
 // Play play morse symbols according to given params
-func Play(player *beep.Player, ru []rune, duration int64, freq, bar float64) {
+func Play(pl player, ru []rune, duration int64, freq, bar float64) {
+	buf := getBuffer(ru, duration, freq, bar)
+	pl.InitSoundDevice()
+	go pl.Play(buf, buf)
+	pl.WaitLine()
+	pl.FlushSoundBuffer()
+}
+
+func getBuffer(ru []rune, duration int64, freq, bar float64) []int16 {
 	ti := beep.DurationToSampleSize(duration)
 	ta := 3 * ti
 	word := make([]int16, 6*ti)
@@ -31,11 +46,7 @@ func Play(player *beep.Player, ru []rune, duration int64, freq, bar float64) {
 			buf = append(buf, letter...)
 		}
 	}
-
-	beep.InitSoundDevice()
-	go player.Play(buf, buf)
-	player.WaitLine()
-	beep.FlushSoundBuffer()
+	return buf
 }
 
 func getSound(freq, bar float64, samples int) []int16 {

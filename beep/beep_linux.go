@@ -45,7 +45,7 @@ func OpenSoundDevice(device string) error {
 }
 
 // InitSoundDevice initialize sound device
-func InitSoundDevice() error {
+func (m *Player) InitSoundDevice() error {
 	var sampleFormat C.snd_pcm_format_t = C.SND_PCM_FORMAT_S8
 	if sample16bit {
 		sampleFormat = C.SND_PCM_FORMAT_S16
@@ -88,7 +88,7 @@ func CloseSoundDevice() {
 }
 
 // FlushSoundBuffer flushes sound buffer
-func FlushSoundBuffer() {
+func (m *Player) FlushSoundBuffer() {
 	if pcmHandle != nil {
 		C.snd_pcm_drain(pcmHandle)
 	}
