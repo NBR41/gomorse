@@ -1,8 +1,10 @@
 language: go
-install: true
+install: 
+    - sudo apt-get -qq update
+    - sudo apt-get install -y libasound2-dev
 go:
   - "1.x"
 script:
-  - go test -race -v -coverprofile=coverage.txt -covermode=atomic ./beep ./morse 
+  - go test -race -v -coverprofile=coverage.txt -covermode=atomic ./beep ./morse
 after_success:
   - bash <(curl -s https://codecov.io/bash)
