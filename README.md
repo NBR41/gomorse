@@ -15,9 +15,6 @@ sudo apt-get install libasound2-dev  # for Debian and Ubuntu
 After you get the package, and install dependancies
 ```bash
 go get github.com/NBR41/gomorse
-cd $GOPATH/src/github.com/NBR41/gomorse/cmd/gomorse
-dep ensure
-go install # or go build
 ```
 
 ## Usage
