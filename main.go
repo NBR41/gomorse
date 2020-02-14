@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"bytes"
 	"fmt"
+	"log"
 	"os"
 	"strings"
 
@@ -34,7 +35,9 @@ func main() {
 		Run: func(cmd *cobra.Command, args []string) {
 			player := beep.NewPlayer()
 			scanner := bufio.NewScanner(os.Stdin)
-			beep.OpenSoundDevice("default")
+			if err := beep.OpenSoundDevice("default"); err != nil {
+				log.Fatal(err)
+			}
 			defer beep.CloseSoundDevice()
 			for {
 				fmt.Print("Type your phrase to code> ")

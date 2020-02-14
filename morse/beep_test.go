@@ -18,14 +18,15 @@ func (p *testplayer) InitSoundDevice() error {
 func (p *testplayer) FlushSoundBuffer() {
 
 }
+
 func (p *testplayer) WaitLine() {
 	<-p.ch
 }
+
 func (p *testplayer) Play(buf1, buf2 []int16) {
 	p.buf = buf1
 	p.buf2 = buf2
 	p.ch <- true
-
 }
 
 func TestPlay(t *testing.T) {

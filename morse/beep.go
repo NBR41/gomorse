@@ -16,7 +16,7 @@ type player interface {
 // Play play morse symbols according to given params
 func Play(pl player, ru []rune, duration int64, freq, bar float64) {
 	buf := getBuffer(ru, duration, freq, bar)
-	pl.InitSoundDevice()
+	_ = pl.InitSoundDevice()
 	go pl.Play(buf, buf)
 	pl.WaitLine()
 	pl.FlushSoundBuffer()
@@ -27,7 +27,7 @@ func getBuffer(ru []rune, duration int64, freq, bar float64) []int16 {
 	ta := 3 * ti
 	word := make([]int16, 6*ti)
 	letter := make([]int16, ti)
-	buf := make([]int16, 0, 0)
+	buf := make([]int16, 0)
 	for i := range ru {
 		if ru[i] == ' ' {
 			buf = append(buf, word...)

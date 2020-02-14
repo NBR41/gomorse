@@ -107,25 +107,26 @@ func (m *Player) Play(buf1, buf2 []int16) {
 	// Changing to single channel interleaved buffer format for PulseAudio
 	buf := unsafe.Pointer(&buf1[0])
 
-	for {
-		n := C.snd_pcm_writei(pcmHandle, buf, C.snd_pcm_uframes_t(bufsize))
-		written := int(n)
-		if written < 0 {
-			if m.stopping {
-				break
-			}
-			// error
-			code := C.int(written)
-			written = 0
-			_ = written
-			fmt.Fprintln(os.Stderr, "snd_pcm_writei:", code, strerror(code))
-			code = C.snd_pcm_recover(pcmHandle, code, 0)
-			if code < 0 {
-				fmt.Fprintln(os.Stderr, "snd_pcm_recover:", strerror(code))
-				break
-			}
-		}
-		break // don't retry, breaks timing
-	}
+	m.play(buf, bufsize)
 	m.linePlayed <- true // notify that playback is done
+}
+
+func (m *Player) play(buf unsafe.Pointer, bufsize int) {
+	n := C.snd_pcm_writei(pcmHandle, buf, C.snd_pcm_uframes_t(bufsize))
+	written := int(n)
+	if written < 0 {
+		if m.stopping {
+			return
+		}
+		// error
+		code := C.int(written)
+		written = 0
+		_ = written
+		fmt.Fprintln(os.Stderr, "snd_pcm_writei:", code, strerror(code))
+		code = C.snd_pcm_recover(pcmHandle, code, 0)
+		if code < 0 {
+			fmt.Fprintln(os.Stderr, "snd_pcm_recover:", strerror(code))
+			return
+		}
+	}
 }
