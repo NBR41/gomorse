@@ -14,12 +14,12 @@ import (
 	"github.com/NBR41/gomorse/morse"
 )
 
-var (
-	volume, duration int64
-	freqH, freq, bar float64
-)
-
 func main() {
+	var (
+		volume, duration int64
+		freqH, freq, bar float64
+	)
+
 	var cmd = &cobra.Command{
 		Use:   "gomorse",
 		Short: "gomorse is a tool to transcript phrases to morse code",

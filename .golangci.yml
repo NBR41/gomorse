@@ -4,3 +4,19 @@ linters:
     - lll
     - wsl
     - gomnd
+
+issues:
+  exclude-use-default: false
+  exclude-rules:
+    - path: morse/alphabet\.go
+      text: "^`Alphabet` is a global variable$"
+      linters:
+        - gochecknoglobals
+
+    - path: beep/beep_linux.go
+      linters:
+        - gochecknoglobals
+
+    - path: main.go
+      linters:
+        - misspell
