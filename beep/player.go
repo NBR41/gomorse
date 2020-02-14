@@ -1,3 +1,4 @@
+// Package beep play beep sound
 package beep
 
 import (

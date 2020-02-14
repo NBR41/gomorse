@@ -16,6 +16,7 @@ issues:
     - path: beep/beep_linux.go
       linters:
         - gochecknoglobals
+        - gocritic
 
     - path: main.go
       linters:

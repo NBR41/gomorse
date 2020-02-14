@@ -1,3 +1,4 @@
+// Package morse transcript text to morse code as beeps
 package morse
 
 import (
